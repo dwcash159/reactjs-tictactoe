@@ -32,9 +32,17 @@ export default Navigation;
 
 function Square(props) {
   return (
-    <button className="square" onClick={props.onClick}>
-      {props.value}
-    </button>
+
+      <div className="square-wrapper">
+        <div className="square-placeholder"></div>
+        <div className="square-outer">
+          <button className="square" onClick={props.onClick}>
+            {props.value}
+          </button>
+        </div>
+      </div>
+
+
   );
 }
 
@@ -42,7 +50,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square
-          className="h-100 d-inline-block square"
+          className="square"
           value={this.props.squares[i]}
           onClick={() => this.props.onClick(i)}
       />
@@ -66,7 +74,7 @@ class Board extends React.Component {
             </Col>
 
           </Row>
-          <Row className="ptx-3 board-row">
+          <Row className="board-row">
             <Col>
               {this.renderSquare(3)}
             </Col>
@@ -78,7 +86,7 @@ class Board extends React.Component {
             </Col>
 
           </Row>
-          <Row className="ptx-3 board-row">
+          <Row className="board-row">
             <Col>
               {this.renderSquare(6)}
             </Col>
@@ -159,7 +167,7 @@ class Game extends React.Component {
           <Navigation/>
           <Container fluid>
             <Row className="pt-3">
-              <Col>
+              <Col sm>
                 <div className="game-board">
                   <Board
                       squares={current.squares}
@@ -167,7 +175,7 @@ class Game extends React.Component {
                   />
                 </div>
                 </Col>
-                <Col>
+                <Col sm>
                 <div className="game-info">
                   <div>{status}</div>
                   <ol>{moves}</ol>

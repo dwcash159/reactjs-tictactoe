@@ -1,8 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+// Importing the Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
+const Navigation = () => {
+  return (
+      <>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Container>
+            <Navbar.Brand href="#home">TicTacToe</Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="ms-auto" style={{'text-align':'left'}}>
+                <Nav.Link href="/home">Home</Nav.Link>
+                <Nav.Link href="/home">Stats</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      </>
+  );
+}
+
+export default Navigation;
 
 function Square(props) {
   return (
@@ -105,18 +131,29 @@ class Game extends React.Component {
     }
 
     return (
-      <div className="game">
-        <div className="game-board">
-          <Board
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-          />
+
+        <div className="game">
+          <Navigation/>
+          <Container>
+            <Row>
+              <Col>
+                <div className="game-board">
+                  <Board
+                      squares={current.squares}
+                      onClick={(i) => this.handleClick(i)}
+                  />
+                </div>
+                <Col>
+                </Col>
+                <div className="game-info">
+                  <div>{status}</div>
+                  <ol>{moves}</ol>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+
         </div>
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
-        </div>
-      </div>
     );
   }
 }

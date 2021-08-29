@@ -7,18 +7,20 @@ body {
 }
 
 .square {
-
     width: 100%;
     height: 100%;
-
 }
 
 .square-wrapper {
     display: inline-block;
     position: relative;
     width: 50%;
+}
+
+.button-spacing .row:nth-child(-n+2) {
     margin-bottom:1.0em;
 }
+
 
 .square-placeholder {
     margin-top: 75%;

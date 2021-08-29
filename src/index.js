@@ -60,7 +60,7 @@ class Board extends React.Component {
   render() {
     return (
 
-        <Container fluid>
+        <Container fluid className="button-spacing">
           <Row className="board-row">
             <Col>
               {this.renderSquare(0)}

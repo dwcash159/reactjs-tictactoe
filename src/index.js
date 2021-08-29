@@ -13,11 +13,11 @@ const Navigation = () => {
   return (
       <>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Container>
+          <Container fluid>
             <Navbar.Brand href="#home">TicTacToe</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
             <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="ms-auto" style={{'text-align':'left'}}>
+              <Nav className="ms-auto" style={{'textAlign':'left'}}>
                 <Nav.Link href="/home">Home</Nav.Link>
                 <Nav.Link href="/home">Stats</Nav.Link>
               </Nav>
@@ -42,31 +42,54 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
+          className="h-100 d-inline-block square"
+          value={this.props.squares[i]}
+          onClick={() => this.props.onClick(i)}
       />
     );
   }
 
   render() {
     return (
-      <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
+
+        <Container fluid>
+          <Row className="board-row">
+            <Col>
+              {this.renderSquare(0)}
+            </Col>
+            <Col>
+              {this.renderSquare(1)}
+            </Col>
+            <Col>
+              {this.renderSquare(2)}
+
+            </Col>
+
+          </Row>
+          <Row className="ptx-3 board-row">
+            <Col>
+              {this.renderSquare(3)}
+            </Col>
+            <Col>
+              {this.renderSquare(4)}
+            </Col>
+            <Col>
+              {this.renderSquare(5)}
+            </Col>
+
+          </Row>
+          <Row className="ptx-3 board-row">
+            <Col>
+              {this.renderSquare(6)}
+            </Col>
+            <Col>
+              {this.renderSquare(7)}
+            </Col>
+            <Col>
+              {this.renderSquare(8)}
+            </Col>
+          </Row>
+        </Container>
     );
   }
 }
@@ -134,8 +157,8 @@ class Game extends React.Component {
 
         <div className="game">
           <Navigation/>
-          <Container>
-            <Row>
+          <Container fluid>
+            <Row className="pt-3">
               <Col>
                 <div className="game-board">
                   <Board
@@ -143,8 +166,8 @@ class Game extends React.Component {
                       onClick={(i) => this.handleClick(i)}
                   />
                 </div>
-                <Col>
                 </Col>
+                <Col>
                 <div className="game-info">
                   <div>{status}</div>
                   <ol>{moves}</ol>

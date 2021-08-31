@@ -8,6 +8,9 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import ListGroup from 'react-bootstrap/ListGroup';
+import ListGroupItem from 'react-bootstrap/ListGroupItem';
+import Button from 'react-bootstrap/Button';
 
 const Navigation = () => {
   return (
@@ -34,14 +37,13 @@ function Square(props) {
   return (
 
       <div className="square-wrapper">
-        <div className="square-placeholder"></div>
+        <div className="square-placeholder"> </div>
         <div className="square-outer">
           <button className="square" onClick={props.onClick}>
             {props.value}
           </button>
         </div>
       </div>
-
 
   );
 }
@@ -147,10 +149,11 @@ class Game extends React.Component {
       const desc = move ?
         'Go to move #' + move :
         'Go to game start';
+      const first = ( move === 0) ? 'primary' : 'secondary';
       return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
-        </li>
+        <ListGroupItem key={move}>
+          <Button variant={first} onClick={() => this.jumpTo(move)}>{desc}</Button>
+        </ListGroupItem>
       );
     });
 
@@ -165,6 +168,7 @@ class Game extends React.Component {
 
         <div className="game">
           <Navigation/>
+          <h2 className="mt-1">{status}</h2>
           <Container fluid>
             <Row className="pt-3">
               <Col sm>
@@ -177,8 +181,7 @@ class Game extends React.Component {
                 </Col>
                 <Col sm>
                 <div className="game-info">
-                  <div>{status}</div>
-                  <ol>{moves}</ol>
+                  <ListGroup>{moves}</ListGroup>
                 </div>
               </Col>
             </Row>
